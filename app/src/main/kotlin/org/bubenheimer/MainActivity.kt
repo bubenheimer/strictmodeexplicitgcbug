@@ -9,7 +9,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectExplicitGc().build())
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().detectExplicitGc().penaltyListener({ it.run() }, { throw it }).build())
         StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().setClassInstanceLimit(Application::class.java, 10).build())
     }
 }
